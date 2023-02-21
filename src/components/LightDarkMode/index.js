@@ -6,33 +6,30 @@ import './index.css'
 class LightDarkMode extends Component {
   state = {backGround: true}
 
-  addBackground = () => {
+  onChangeMode = () => {
     const {backGround} = this.state
-    console.log({backGround})
     if (backGround) {
       this.setState({backGround: false})
-    }
-  }
-
-  removeBackground = () => {
-    const {backGround} = this.state
-    if (!backGround) {
+    } else {
       this.setState({backGround: true})
     }
   }
 
   render() {
     const {backGround} = this.state
-    let one
 
-    if (backGround) {
-      one = <button onClick="addBackground">Light Mode</button>
-    }
-    if (!backGround) {
-      one = <button onClick="removeBackground">Dark Mode</button>
-    }
-
-    return one
+    const one = backGround ? 'Light Mode' : 'Dark Mode'
+    const two = backGround ? 'light-mode' : 'dark-mode'
+    return (
+      <div className="container">
+        <div className={two}>
+          <h1>Click to Change Mode</h1>
+          <button type="button" onClick={this.onChangeMode}>
+            {one}
+          </button>
+        </div>
+      </div>
+    )
   }
 }
 
